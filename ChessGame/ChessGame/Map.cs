@@ -28,7 +28,7 @@ namespace ChessGame
                 }
             }
         }
-        //Draw 
+        //Draw method
         public void Draw(SpriteBatch spriteBatch)
         {
 
