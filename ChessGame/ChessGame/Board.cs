@@ -6,7 +6,7 @@ namespace ChessGame
 {
     public class Board
     {
-        private string[,] _pieceGrid = new string[8, 8]
+        private readonly string[,] _pieceGrid = new string[8, 8]
         {
             {"wrook","wknight","wbishop","wking","wqueen","wbishop","wknight","wrook"},
             {"wpawn","wpawn","wpawn","wpawn","wpawn","wpawn","wpawn","wpawn"},
