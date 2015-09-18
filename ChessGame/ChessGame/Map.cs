@@ -15,7 +15,8 @@ namespace ChessGame
         {
             get { return collisionTiles; }
         }
-
+        // Generate board, int size = size of tiles
+        //TODO pass size to Vector2
         public void Generate(int[,] map, int size)
         {
             for (int x = 0; x < map.GetLength(1); x++)
@@ -27,9 +28,10 @@ namespace ChessGame
                 }
             }
         }
-
+        //
         public void Draw(SpriteBatch spriteBatch)
         {
+
             foreach (var tile in CollisionTiles)
             {
                 tile.Draw(spriteBatch);

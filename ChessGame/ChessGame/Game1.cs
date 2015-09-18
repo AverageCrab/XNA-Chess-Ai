@@ -31,6 +31,7 @@ namespace ChessGame
             {0,1,0,1,0,1,0,1},
             {1,0,1,0,1,0,1,0},
         };
+
         Sprite mSprite;
         Map _map = new Map();
         Board _board = new Board();
@@ -105,12 +106,12 @@ namespace ChessGame
                 if (PieceSelected != null)
                 {
                     var tileReference = Helpers.PixelToTile(currentMouseState.X, currentMouseState.Y);
+                    // helper.inbounds
                     if (tileReference.X >= 0 && tileReference.X <= 7 && tileReference.Y >= 0 && tileReference.Y <= 7)
                     {
                         if (_currentGrid[(int)tileReference.Y, (int)tileReference.X] == 3)
                         {
                             PieceSelected.Move(tileReference);
-                            PieceSelected = null;
                         }
                     }
                     PieceSelected = null;
