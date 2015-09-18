@@ -105,33 +105,9 @@ namespace ChessGame
                     tilePosition.X = 7;
                     break;
             }
-            switch (boardCoord.XRank)
-            {
-                case "a":
-                    tilePosition.Y = 0;
-                    break;
-                case "b":
-                    tilePosition.Y = 1;
-                    break;
-                case "c":
-                    tilePosition.Y = 2;
-                    break;
-                case "d":
-                    tilePosition.Y = 3;
-                    break;
-                case "e":
-                    tilePosition.Y = 4;
-                    break;
-                case "f":
-                    tilePosition.Y = 5;
-                    break;
-                case "g":
-                    tilePosition.Y = 6;
-                    break;
-                case "h":
-                    tilePosition.Y = 7;
-                    break;
-            }
+
+            tilePosition.Y = PositionCharToInt(boardCoord.XRank);
+        
             return tilePosition;
         }
 
@@ -164,6 +140,25 @@ namespace ChessGame
             return PieceType.None;
         }
 
+        public static BoardCoord MoveXY(string XRank, int Xquantity, string YRank, int Yquantity)
+        {
+            var x = PositionCharToInt(XRank);
+            var y = Convert.ToInt32(YRank);
+
+
+            x += Xquantity;
+
+            XRank = PositionIntToChar(x);
+            x = PositionCharToInt(XRank);
+
+            y += Yquantity;
+
+            
+            BoardCoord newPosition = new BoardCoord() {XRank=XRank,YRank=y.ToString()};     
+
+            return newPosition;
+        }
+
         public static string DecrementYRank(string YRank,int quantity)
         {
             var rank = Convert.ToInt32(YRank);
@@ -176,6 +171,89 @@ namespace ChessGame
             var rank = Convert.ToInt32(YRank);
             rank = rank + quantity;
             return rank.ToString();
+        }
+        // not actually useful
+        public static int CheckPositionBounds(int position)
+        {
+            //max bound mve me
+            var max = 7;
+            if(position < 0)
+            {
+                position = position + max;
+            }
+            //gone to far
+            else if(position>max)
+            {
+                position = position - max;
+            }
+            return position;
+        }
+
+        public static string PositionIntToChar(int positionInt)
+        {
+            var positionChar = "";
+            //Probably horrible
+            switch (positionInt)
+            {
+                case 0:
+                    positionChar = "a";
+                    break;
+                case 1:
+                    positionChar = "b";
+                    break;
+                case 2:
+                    positionChar = "c";
+                    break;
+                case 3:
+                    positionChar = "d";
+                    break;
+                case 4:
+                    positionChar = "e";
+                    break;
+                case 5:
+                    positionChar = "f";
+                    break;
+                case 6:
+                    positionChar = "g";
+                    break;
+                case 7:
+                    positionChar = "h";
+                    break;
+            }
+            return positionChar;
+        }
+        public static int PositionCharToInt(string positionChar)
+        {
+            var positionInt = 0;
+            //Probably horrible
+            switch(positionChar)
+            {
+                case "a":
+                    positionInt = 0;
+                    break;
+                case "b":
+                    positionInt = 1;
+                    break;
+                case "c":
+                    positionInt = 2;
+                    break;
+                case "d":
+                    positionInt = 3;
+                    break;
+                case "e":
+                    positionInt = 4;
+                    break;
+                case "f":
+                    positionInt = 5;
+                    break;
+                case "g":
+                    positionInt = 6;
+                    break;
+                case "h":
+                    positionInt = 7;
+                    break;
+            }
+            return positionInt;
         }
     }
 }

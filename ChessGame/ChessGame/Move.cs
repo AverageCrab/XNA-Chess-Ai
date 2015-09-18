@@ -20,6 +20,25 @@ namespace ChessGame
                 moves.Add(new BoardCoord() { XRank = piece.BoardTile.XRank, YRank = Helpers.IncrementYRank(piece.BoardTile.YRank, 1) });
                 moves.Add(new BoardCoord() { XRank = piece.BoardTile.XRank, YRank = Helpers.IncrementYRank(piece.BoardTile.YRank, 2) });
             }
+            if (piece.Type == PieceType.Knight)
+            {
+                //up left
+                moves.Add(Helpers.MoveXY(piece.BoardTile.XRank, -1, piece.BoardTile.YRank, 2));
+                //UP AND LEFFT
+                moves.Add(Helpers.MoveXY(piece.BoardTile.XRank, -2, piece.BoardTile.YRank, 1));
+                //down left
+                moves.Add(Helpers.MoveXY(piece.BoardTile.XRank, -2, piece.BoardTile.YRank, -1));
+                //DOWN LEFT AGAIN
+                moves.Add(Helpers.MoveXY(piece.BoardTile.XRank, -1, piece.BoardTile.YRank, -2));
+                //up right
+                moves.Add(Helpers.MoveXY(piece.BoardTile.XRank, 1, piece.BoardTile.YRank, 2));
+                //UP AND RIGHT?lol
+                moves.Add(Helpers.MoveXY(piece.BoardTile.XRank, 2, piece.BoardTile.YRank, 1));
+                //down right
+                moves.Add(Helpers.MoveXY(piece.BoardTile.XRank, 1, piece.BoardTile.YRank, -2));
+                //DOWN RIGHT AGAIN
+                moves.Add(Helpers.MoveXY(piece.BoardTile.XRank, 2, piece.BoardTile.YRank, -1));
+            }
             return moves;
         }
     }

@@ -141,7 +141,7 @@ namespace ChessGame
 
             base.Update(gameTime);
         }
-
+        //Checks for move mouse click 
         private void CheckForMouseClick()
         {
             foreach (var piece in _board.Pieces)
@@ -162,10 +162,12 @@ namespace ChessGame
                             };
                     _currentGrid[piece.TilePosition.X, piece.TilePosition.Y] = 2;
                     PieceSelected = piece;
+                    //Where can we move 
                     AvailableMoves = Move.AvailableMoves(PieceSelected);
                     foreach (var move in AvailableMoves)
                     {
                         var tile = Helpers.BoardCoordToTile(move);
+                        //colour 
                         _currentGrid[tile.X, tile.Y] = 3;
                     }
                     _map.Generate(_currentGrid, 132);
