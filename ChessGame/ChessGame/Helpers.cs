@@ -160,7 +160,7 @@ namespace ChessGame
         public static TilePosition MoveXY(int y, int yQuantity, int x, int xQuantity)
         {
             y = MoveY(y,yQuantity);
-            x = MoveY(x,xQuantity);
+            x = MoveX(x,xQuantity);
             return new TilePosition(){ X = y, Y = x};
         }
 
