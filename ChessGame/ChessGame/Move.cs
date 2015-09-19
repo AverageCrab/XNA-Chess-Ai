@@ -12,12 +12,12 @@ namespace ChessGame
             switch (piece.Type)
             {
                 case PieceType.Pawn:
-                    if (piece.Type == PieceType.Pawn && piece.Colour == PieceColour.White)
+                    if (piece.Colour == PieceColour.White)
                     {
                         moves.Add(Helpers.MoveXY(piece.TilePosition.Y, 0, piece.TilePosition.X, 1));
                         moves.Add(Helpers.MoveXY(piece.TilePosition.Y, 0, piece.TilePosition.X, 2));
                     }
-                    else if (piece.Type == PieceType.Pawn && piece.Colour == PieceColour.Black)
+                    else if (piece.Colour == PieceColour.Black)
                     {
                         moves.Add(Helpers.MoveXY(piece.TilePosition.Y, 0, piece.TilePosition.X, -1));
                         moves.Add(Helpers.MoveXY(piece.TilePosition.Y, 0, piece.TilePosition.X, -2));
