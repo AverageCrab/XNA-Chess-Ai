@@ -1,43 +1,58 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace ChessGame
 {
     public static class Move
     {
-        public static List<BoardCoord> AvailableMoves(Piece piece)
+        public static List<TilePosition> AvailableMoves(Piece piece)
         {
-            var moves = new List<BoardCoord>();
+            var moves = new List<TilePosition>();
             if (piece.Type == PieceType.Pawn && piece.Colour == PieceColour.White)
             {
-                moves.Add(new BoardCoord() {XRank = piece.BoardTile.XRank, YRank = Helpers.DecrementYRank(piece.BoardTile.YRank,1)});
-                moves.Add(new BoardCoord() { XRank = piece.BoardTile.XRank, YRank = Helpers.DecrementYRank(piece.BoardTile.YRank,2)});
-            } else
-            if (piece.Type == PieceType.Pawn && piece.Colour == PieceColour.Black)
+                moves.Add(Helpers.MoveXY(piece.TilePosition.Y, 0, piece.TilePosition.X, 1));
+                moves.Add(Helpers.MoveXY(piece.TilePosition.Y, 0, piece.TilePosition.X, 2));
+            }
+            else if (piece.Type == PieceType.Pawn && piece.Colour == PieceColour.Black)
             {
-                moves.Add(new BoardCoord() { XRank = piece.BoardTile.XRank, YRank = Helpers.IncrementYRank(piece.BoardTile.YRank, 1) });
-                moves.Add(new BoardCoord() { XRank = piece.BoardTile.XRank, YRank = Helpers.IncrementYRank(piece.BoardTile.YRank, 2) });
+                moves.Add(Helpers.MoveXY(piece.TilePosition.Y, 0, piece.TilePosition.X, -1));
+                moves.Add(Helpers.MoveXY(piece.TilePosition.Y, 0, piece.TilePosition.X, -2));
             }
             if (piece.Type == PieceType.Knight)
             {
-                //up left
-                moves.Add(Helpers.MoveXY(piece.BoardTile.XRank, -1, piece.BoardTile.YRank, 2));
-                //UP AND LEFFT
-                moves.Add(Helpers.MoveXY(piece.BoardTile.XRank, -2, piece.BoardTile.YRank, 1));
-                //down left
-                moves.Add(Helpers.MoveXY(piece.BoardTile.XRank, -2, piece.BoardTile.YRank, -1));
-                //DOWN LEFT AGAIN
-                moves.Add(Helpers.MoveXY(piece.BoardTile.XRank, -1, piece.BoardTile.YRank, -2));
-                //up right
-                moves.Add(Helpers.MoveXY(piece.BoardTile.XRank, 1, piece.BoardTile.YRank, 2));
-                //UP AND RIGHT?lol
-                moves.Add(Helpers.MoveXY(piece.BoardTile.XRank, 2, piece.BoardTile.YRank, 1));
-                //down right
-                moves.Add(Helpers.MoveXY(piece.BoardTile.XRank, 1, piece.BoardTile.YRank, -2));
-                //DOWN RIGHT AGAIN
-                moves.Add(Helpers.MoveXY(piece.BoardTile.XRank, 2, piece.BoardTile.YRank, -1));
+                //Up left
+                moves.Add(Helpers.MoveXY(piece.TilePosition.Y, -1, piece.TilePosition.X, -2));
+                moves.Add(Helpers.MoveXY(piece.TilePosition.Y, -2, piece.TilePosition.X, -1));
+
+                //Up right
+                moves.Add(Helpers.MoveXY(piece.TilePosition.Y, 1, piece.TilePosition.X, -2));
+                moves.Add(Helpers.MoveXY(piece.TilePosition.Y, 2, piece.TilePosition.X, -1));
+
+                //Down left
+                moves.Add(Helpers.MoveXY(piece.TilePosition.Y, -1, piece.TilePosition.X, 2));
+                moves.Add(Helpers.MoveXY(piece.TilePosition.Y, -2, piece.TilePosition.X, 1));
+
+                //Down right
+                moves.Add(Helpers.MoveXY(piece.TilePosition.Y, 1, piece.TilePosition.X, 2));
+                moves.Add(Helpers.MoveXY(piece.TilePosition.Y, 2, piece.TilePosition.X, 1));
+            }
+            if (piece.Type == PieceType.King)
+            {
+                //Up
+                moves.Add(Helpers.MoveXY(piece.TilePosition.Y, 0, piece.TilePosition.X, -1));
+                //Down
+                moves.Add(Helpers.MoveXY(piece.TilePosition.Y, 0, piece.TilePosition.X, 1));
+                //Left
+                moves.Add(Helpers.MoveXY(piece.TilePosition.Y, -1, piece.TilePosition.X, 0));
+                //Right
+                moves.Add(Helpers.MoveXY(piece.TilePosition.Y, 1, piece.TilePosition.X, 0));
+                //Up Left
+                moves.Add(Helpers.MoveXY(piece.TilePosition.Y, -1, piece.TilePosition.X, -1));
+                //Up Right
+                moves.Add(Helpers.MoveXY(piece.TilePosition.Y, 1, piece.TilePosition.X, -1));
+                //Down Left
+                moves.Add(Helpers.MoveXY(piece.TilePosition.Y, -1, piece.TilePosition.X, 1));
+                //Down Right
+                moves.Add(Helpers.MoveXY(piece.TilePosition.Y, 1, piece.TilePosition.X, 1));
             }
             return moves;
         }

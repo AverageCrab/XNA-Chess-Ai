@@ -38,7 +38,7 @@ namespace ChessGame
         private MouseState currentMouseState;
         private MouseState lastMouseState;
         private Piece PieceSelected;
-        private List<BoardCoord> AvailableMoves;
+        private List<TilePosition> AvailableMoves;
 
         public Game1()
         {
@@ -164,11 +164,10 @@ namespace ChessGame
                     PieceSelected = piece;
                     //Where can we move 
                     AvailableMoves = Move.AvailableMoves(PieceSelected);
-                    foreach (var move in AvailableMoves)
+                    foreach (var move in AvailableMoves.Where(am => (am.X >= 0 && am.X <= 7) && (am.Y >= 0 && am.Y <= 7)))
                     {
-                        var tile = Helpers.BoardCoordToTile(move);
                         //colour 
-                        _currentGrid[tile.X, tile.Y] = 3;
+                        _currentGrid[move.Y, move.X] = 3;
                     }
                     _map.Generate(_currentGrid, 132);
                 }

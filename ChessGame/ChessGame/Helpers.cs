@@ -140,38 +140,30 @@ namespace ChessGame
             return PieceType.None;
         }
 
-        public static BoardCoord MoveXY(string XRank, int Xquantity, string YRank, int Yquantity)
+        //public static TilePosition MoveXY(int x, int xQuantity, int y, int yQuantity)
+        //{
+        //    return new TilePosition(){X = y + yQuantity, Y = x + xQuantity};
+        //}
+
+        public static int MoveY(int x, int quantity)
         {
-            var x = PositionCharToInt(XRank);
-            var y = Convert.ToInt32(YRank);
-
-
-            x += Xquantity;
-
-            XRank = PositionIntToChar(x);
-            x = PositionCharToInt(XRank);
-
-            y += Yquantity;
-
-            
-            BoardCoord newPosition = new BoardCoord() {XRank=XRank,YRank=y.ToString()};     
-
-            return newPosition;
+            x = x + quantity;
+            return x;
         }
 
-        public static string DecrementYRank(string YRank,int quantity)
+        public static int MoveX(int y, int quantity)
         {
-            var rank = Convert.ToInt32(YRank);
-            rank = rank - quantity;
-            return rank.ToString();
+            y = y + quantity;
+            return y;
         }
 
-        public static string IncrementYRank(string YRank, int quantity)
+        public static TilePosition MoveXY(int y, int yQuantity, int x, int xQuantity)
         {
-            var rank = Convert.ToInt32(YRank);
-            rank = rank + quantity;
-            return rank.ToString();
+            y = y + yQuantity;
+            x = x + xQuantity;
+            return new TilePosition(){ X = y, Y = x};
         }
+
         // not actually useful
         public static int CheckPositionBounds(int position)
         {
