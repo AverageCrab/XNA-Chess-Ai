@@ -159,8 +159,8 @@ namespace ChessGame
 
         public static TilePosition MoveXY(int y, int yQuantity, int x, int xQuantity)
         {
-            y = y + yQuantity;
-            x = x + xQuantity;
+            y = MoveY(y,yQuantity);
+            x = MoveY(x,xQuantity);
             return new TilePosition(){ X = y, Y = x};
         }
 
