@@ -163,7 +163,7 @@ namespace ChessGame
                     _currentGrid[piece.TilePosition.X, piece.TilePosition.Y] = 2;
                     PieceSelected = piece;
                     //Where can we move 
-                    AvailableMoves = Move.AvailableMoves(PieceSelected);
+                    AvailableMoves = Move.AvailableMoves(PieceSelected,_board.Pieces);
                     foreach (var move in AvailableMoves.Where(am => (am.X >= 0 && am.X <= 7) && (am.Y >= 0 && am.Y <= 7)))
                     {
                         //colour 
