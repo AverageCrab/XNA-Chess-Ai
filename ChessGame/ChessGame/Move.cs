@@ -14,15 +14,18 @@ namespace ChessGame
                 case PieceType.Pawn:
                     if (piece.Colour == PieceColour.White)
                     {
-                        
                         moves.Add(Helpers.MoveXY(piece.TilePosition.X, 0, piece.TilePosition.Y, 1));
                         moves.Add(Helpers.MoveXY(piece.TilePosition.X, 0, piece.TilePosition.Y, 2));
+                        moves.Add(Helpers.MoveXY(piece.TilePosition.X, 1, piece.TilePosition.Y, 1));
+                        moves.Add(Helpers.MoveXY(piece.TilePosition.X, -1, piece.TilePosition.Y, 1));
                     }
                     else if (piece.Colour == PieceColour.Black)
                     {
                         var lel = GetMaxMovesUp(pieces, piece);
                         moves.Add(Helpers.MoveXY(piece.TilePosition.X, 0, piece.TilePosition.Y, -1));
                         moves.Add(Helpers.MoveXY(piece.TilePosition.X, 0, piece.TilePosition.Y, -2));
+                        moves.Add(Helpers.MoveXY(piece.TilePosition.X, 1, piece.TilePosition.Y, -1));
+                        moves.Add(Helpers.MoveXY(piece.TilePosition.X, -1, piece.TilePosition.Y, -1));
                     }
                     break;
                 case PieceType.Knight:
@@ -62,18 +65,18 @@ namespace ChessGame
                     break;
                 case PieceType.Rook:
                 case PieceType.Queen:
-                    var maxMovesUp = GetMaxMovesUp(pieces, piece);
+                    var maxMovesUp = GetMaxMovesDown(pieces, piece);
 
                     for (int i = 1; i < maxMovesUp; i++)
                     {
-                        moves.Add(Helpers.MoveXY(piece.TilePosition.X, 0, piece.TilePosition.Y, -i));
+                        moves.Add(Helpers.MoveXY(piece.TilePosition.X, 0, piece.TilePosition.Y, i));
                     }
 
-                    var maxMovesDown = GetMaxMovesDown(pieces, piece);
+                    var maxMovesDown = GetMaxMovesUp(pieces, piece);
 
                     for (int i = 1; i < maxMovesDown; i++)
                     {
-                        moves.Add(Helpers.MoveXY(piece.TilePosition.X, 0, piece.TilePosition.Y, i));
+                        moves.Add(Helpers.MoveXY(piece.TilePosition.X, 0, piece.TilePosition.Y, -i));
                     }
 
                     var maxMovesLeft = GetMaxMovesLeft(pieces, piece);
