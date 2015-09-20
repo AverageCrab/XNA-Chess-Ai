@@ -97,26 +97,30 @@ namespace ChessGame
 
             return moves;
         }
+        //todo make a function that works out if the piece is takeable
         private static int GetMaxMovesUp(List<Piece> pieces, Piece piece)
         {
                    var closestPieceUp =
-                   pieces.Where(p => p.TilePosition.Y < piece.TilePosition.Y && p.TilePosition.X == piece.TilePosition.X)
+                   pieces.Where(p => p.TilePosition.Y < piece.TilePosition.Y 
+                       && (p.TilePosition.X == piece.TilePosition.X && p.Colour == piece.Colour))
                        .OrderByDescending(p => p.TilePosition.Y)
                        .FirstOrDefault();
+                   //if this piece is takeable and we are not doing an illegal move for a pawn say
 
-                   var maxMovesUp = closestPieceUp != null ? (piece.TilePosition.Y - closestPieceUp.TilePosition.Y) : piece.TilePosition.Y - 1;
+                   var maxMovesUp = closestPieceUp != null ? (piece.TilePosition.Y - closestPieceUp.TilePosition.Y) : piece.TilePosition.Y;
 
             return maxMovesUp;
         }
         private static int GetMaxMovesDown(List<Piece> pieces, Piece piece)
         {
             var closestPieceDown =
-                       pieces.Where(p => p.TilePosition.Y > piece.TilePosition.Y && p.TilePosition.X == piece.TilePosition.X)
+                       pieces.Where(p => p.TilePosition.Y > piece.TilePosition.Y 
+                           && (p.TilePosition.X == piece.TilePosition.X && p.Colour == piece.Colour))
                            .OrderBy(p => p.TilePosition.Y)
                            .FirstOrDefault();
             //todo
-            var maxMovesDown = closestPieceDown != null ? (Math.Abs(piece.TilePosition.Y - closestPieceDown.TilePosition.Y)) : 8 + piece.TilePosition.Y;
-            return maxMovesDown;
+            var maxMovesDown = closestPieceDown != null ? ( closestPieceDown.TilePosition.Y - piece.TilePosition.Y) : piece.TilePosition.Y;
+            return maxMovesDown;    
         }
         private static int GetMaxMovesLeft(List<Piece> pieces, Piece piece)
         {
