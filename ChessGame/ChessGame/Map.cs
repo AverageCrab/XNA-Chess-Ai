@@ -23,7 +23,7 @@ namespace ChessGame
             {
                 for (int y = 0; y < map.GetLength(0); y++)
                 {
-                    int number = map[y, x];
+                    int number = map[x, y];
                     collisionTiles.Add(new Sprite(number,new Vector2(x*132,y*132)));
                 }
             }

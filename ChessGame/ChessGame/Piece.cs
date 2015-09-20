@@ -35,7 +35,7 @@ namespace ChessGame
         {
             BoardTile = Helpers.TileToBoardCoord((int)pos.X, (int)pos.Y);
             Position = Helpers.TileToPixel((int)pos.X, (int)pos.Y);
-            TilePosition = new TilePosition() { X = (int)pos.Y, Y = (int)pos.X };
+            TilePosition = new TilePosition() { X = (int)pos.X, Y = (int)pos.Y };
             CollisionRect = new Rectangle((int)Position.X, (int)Position.Y, 132, 132);
         }
 
@@ -49,7 +49,7 @@ namespace ChessGame
             //Updated on move
             BoardTile = Helpers.TileToBoardCoord((int)pos.X,(int)pos.Y);
             Position = Helpers.TileToPixel((int) pos.X, (int) pos.Y);
-            TilePosition = new TilePosition(){ X = (int)pos.Y,Y = (int)pos.X};
+            TilePosition = new TilePosition(){ X = (int)pos.X,Y = (int)pos.Y};
             CollisionRect = new Rectangle((int)Position.X, (int)Position.Y, 64, 64);
         }
 

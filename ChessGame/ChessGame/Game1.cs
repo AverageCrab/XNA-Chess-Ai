@@ -109,7 +109,7 @@ namespace ChessGame
                     // helper.inbounds
                     if (tileReference.X >= 0 && tileReference.X <= 7 && tileReference.Y >= 0 && tileReference.Y <= 7)
                     {
-                        if (_currentGrid[(int)tileReference.Y, (int)tileReference.X] == 3)
+                        if (_currentGrid[(int)tileReference.X, (int)tileReference.Y] == 3)
                         {
                             PieceSelected.Move(tileReference);
                         }
@@ -149,6 +149,8 @@ namespace ChessGame
                 bool pieceClicked = piece.CollisionRect.Contains(currentMouseState.X, currentMouseState.Y);
                 if (pieceClicked)
                 {
+                    Console.Write(piece.TilePosition.X);
+                    Console.Write(piece.TilePosition.Y);
                     _currentGrid = new int[8, 8]
                             {
                                 {0, 1, 0, 1, 0, 1, 0, 1},

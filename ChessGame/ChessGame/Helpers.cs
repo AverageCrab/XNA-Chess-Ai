@@ -161,7 +161,7 @@ namespace ChessGame
         {
             y = MoveY(y,yQuantity);
             x = MoveX(x,xQuantity);
-            return new TilePosition(){ X = y, Y = x};
+            return new TilePosition(){ X = x, Y = y};
         }
 
         // not actually useful
